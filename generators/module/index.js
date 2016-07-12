@@ -5,7 +5,10 @@ var yosay = require('yosay');
 
 module.exports = yeoman.Base.extend({
   prompting: function () {
-    var name = arguments[0] || "index";
+    var name = "index";
+    if (arguments.length) {
+      name = arguments.join(' ');
+    }
     name = pascal(name);
     var prompts = [{
       type: 'input',
