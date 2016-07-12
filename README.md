@@ -9,10 +9,18 @@ npm install -g yo
 npm install -g generator-eye-php
 ```
 
-Then generate your new project:
+
+## How To Use
+
+### Generate your new project:
 
 ```bash
 yo eye-php
+```
+
+### Create new module (MVC):
+```bash
+yo eye-php:module
 ```
 
 ## Getting To Know Yeoman
