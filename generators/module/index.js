@@ -7,8 +7,12 @@ module.exports = yeoman.Base.extend({
   prompting: function () {
     var name = "index";
     if (arguments.length) {
-      name = arguments.join(' ');
+      name = arguments[0];
+      for (var i = 1; i < arguments.length; i++) {
+        name += ' ' + arguments[i];  
+      }
     }
+
     name = pascal(name);
     var prompts = [{
       type: 'input',
