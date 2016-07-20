@@ -2,18 +2,15 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var helper = require('../helper');
 
 module.exports = yeoman.Base.extend({
   prompting: function () {
     var name = "index";
-    if (arguments.length) {
-      name = arguments[0];
-      for (var i = 1; i < arguments.length; i++) {
-        name += ' ' + arguments[i];  
-      }
-    }
-
-    name = pascal(name);
+    var argName = helper.argConcat(arguments);
+    name = argName ? argName : name;
+    name = helper.pascal(name);
+    
     var prompts = [{
       type: 'input',
       name: 'name',
@@ -31,18 +28,8 @@ module.exports = yeoman.Base.extend({
     this.template('controller.php','controllers/' + this.props.name + 'Controller.php', this.props)
     this.template('model.php','models/' + this.props.name + '.php', this.props)
     this.template('router.php','routers/' + this.props.name + 'Router.php', this.props)
+    this.template('create-table.php','db/' + this.props.name + '_create_table.php', this.props)
   }
 
   
 });
-
-
-function pascal(str) {
-  function up(str) {
-    var first = str[0].toUpperCase();
-    return first + str.substr(1);
-  }
-  var arr = str.split(/[\s\-\_]/g);
-  arr = arr.map(up);
-  return arr.join('');
-}

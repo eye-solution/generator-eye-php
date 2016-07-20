@@ -2,13 +2,14 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var helper = require('../helper');
 
 module.exports = yeoman.Base.extend({
   initializing: function() {
     this.folder = '.';
-    if (arguments[0]) {
-      this.folder += '/' + arguments[0];
-      this.mkdir(this.folder);
+    this.argName = helper.argConcat(arguments);
+    if (this.argName) {
+      this.folder += '/' + this.argName;
     }
   },
   prompting: function () {
@@ -23,6 +24,7 @@ module.exports = yeoman.Base.extend({
       'Clone ' + chalk.red('eye-solution/slim-pug-eloquent') + ' repo from github'
     );
     var folder = this.folder;
+    var db = this.argName ? this.argName : 'test';
 
     this.remote('eye-solution', 'slim-pug-eloquent', function(err, remote) {
       console.log('err');
@@ -31,6 +33,7 @@ module.exports = yeoman.Base.extend({
       console.log(remote);
       remote.bulkDirectory('.', folder);
     });
+    this.template('config.php','config.php', {db: db})
   },
 
   end: function() {
