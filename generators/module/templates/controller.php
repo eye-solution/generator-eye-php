@@ -1,7 +1,7 @@
 <?php
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
-
+require("../models/<%= name %>.php");
 
 class <%= name %>Controller extends Controller {
   public function index(Request $request, Response $response) {

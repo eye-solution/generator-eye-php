@@ -27,7 +27,7 @@ module.exports = yeoman.Base.extend({
   writing: function () {
     this.template('controller.php','controllers/' + this.props.name + 'Controller.php', this.props)
     this.template('model.php','models/' + this.props.name + '.php', this.props)
-    this.template('router.php','routers/' + this.props.name + 'Router.php', this.props)
+    this.template('router.php','routes/' + this.props.name + 'Router.php', this.props)
     this.template('create-table.php','db/' + this.props.name + '_create_table.php', this.props)
   }
 
